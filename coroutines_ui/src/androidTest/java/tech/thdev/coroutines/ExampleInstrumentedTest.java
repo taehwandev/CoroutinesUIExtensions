@@ -1,4 +1,4 @@
-package tech.thdev.coroutines_ui;
+package tech.thdev.coroutines;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
