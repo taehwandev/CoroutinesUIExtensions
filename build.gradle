@@ -1,0 +1,51 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        kotlin_version = '1.2.70'
+        coroutines_version = '0.25.3'
+
+        // Bintray setting info
+        repositoryName = 'thdev.tech'
+        groupId = 'tech.thdev.coroutines'
+
+        websiteUrl = 'https://github.com/taehwandev/CoroutinesUIExtensions'
+        gitHubRepoUrl = 'https://github.com/taehwandev/CoroutinesUIExtensions.git'
+
+        LABELS = ['aar', 'android', 'android coroutines UI extensions']
+        GITHUB_REPO = 'taehwandev/CoroutinesUIExtensions'
+        NODE_NAME = 'CoroutinesUIExtensions'
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        BINTRARY_USER = properties.getProperty('bintray.bintrayUser') != null ?
+                properties.getProperty('bintray.bintrayUser') : System.getenv('BINTRAY_USER')
+        BINTRARY_KEY = properties.getProperty('bintray.bintrayApiKey') != null ?
+                properties.getProperty('bintray.bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    }
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0-rc03'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // https://github.com/dcendents/android-maven-gradle-plugin
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+
+        // https://github.com/bintray/gradle-bintray-plugin
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
