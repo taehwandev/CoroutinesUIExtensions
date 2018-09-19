@@ -1,6 +1,5 @@
 package tech.thdev.coroutines.ui
 
-import android.view.View
 import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.channels.SendChannel
@@ -21,7 +20,7 @@ abstract class CoroutinesUIEventDefault<E, R>(private val bgBody: suspend (item:
 
     private lateinit var clickActor: SendChannel<E>
 
-    open fun throttleFirst(time: Long, unit: TimeUnit): CoroutinesUIEventDefault<E, R> {
+    open fun setThrottleFirst(time: Long, unit: TimeUnit): CoroutinesUIEventDefault<E, R> {
         throttleFirst = CoroutinesThrottleFirst(time, unit)
         return this
     }
@@ -44,9 +43,3 @@ abstract class CoroutinesUIEventDefault<E, R>(private val bgBody: suspend (item:
         }
     }
 }
-
-fun <R> CoroutinesOnClick<R>.throttleFirst(time: Long, unit: TimeUnit = TimeUnit.MILLISECONDS): CoroutinesUIEventDefault<View, R> =
-        this.throttleFirst(time, unit)
-
-infix fun <R> CoroutinesOnClick<R>.update(uiBody: (item: R) -> Unit): CoroutinesUIEventDefault<View, R> =
-        this.consumeEach(uiBody)

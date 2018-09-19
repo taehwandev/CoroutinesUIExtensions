@@ -15,7 +15,7 @@ class CoroutinesUISendEventTest {
                     it
                 },
                 contextProvider = CoroutineContextProviderDefault)
-        onClick.throttleFirst(500, TimeUnit.MILLISECONDS)
+        onClick.setThrottleFirst(500, TimeUnit.MILLISECONDS)
         onClick.consumeEach {
             println("getCount $it")
             assert(it == 0)
