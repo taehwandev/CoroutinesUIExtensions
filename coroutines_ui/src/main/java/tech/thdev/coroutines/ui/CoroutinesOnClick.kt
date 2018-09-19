@@ -1,31 +1,30 @@
 package tech.thdev.coroutines.ui
 
 import android.view.View
-import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.channels.SendChannel
-import kotlinx.coroutines.experimental.channels.actor
-import kotlinx.coroutines.experimental.channels.consumeEach
-import kotlinx.coroutines.experimental.channels.map
+import tech.thdev.coroutines.provider.CoroutineContextProvider
+import tech.thdev.coroutines.provider.CoroutineContextSealed
 
-open class CoroutinesOnClick<T>(private val view: View,
-                                private val bgBody: suspend (item: View) -> T) {
+open class CoroutinesOnClick<R>(private val view: View,
+                                bgBody: suspend (item: View) -> R,
+                                contextProvider: CoroutineContextSealed = CoroutineContextProvider,
+                                job: Job? = null) : CoroutinesUIEventDefault<View, R>(bgBody, contextProvider, job) {
 
-    private val job: Job = Job()
 
-    fun consumeEach(uiBody: (item: T) -> Unit): CoroutinesOnClick<T> {
-        val clickActor: SendChannel<View> = actor(context = UI, parent = job) {
-            this.channel.map(context = CommonPool, transform = bgBody).consumeEach(uiBody)
-        }
-
-        view.setOnClickListener { clickActor.offer(it) }
+    override fun consumeEach(uiBody: (item: R) -> Unit): CoroutinesUIEventDefault<View, R> {
+        super.consumeEach(uiBody)
+        view.setOnClickListener { offer(it) }
         return this
     }
 }
 
-fun <T> onClick(view: View, bgBody: suspend (item: View) -> T): CoroutinesOnClick<T> =
-        CoroutinesOnClick(view, bgBody)
-
-infix fun <T> CoroutinesOnClick<T>.update(uiBody: (item: T) -> Unit): CoroutinesOnClick<T> =
-        this.consumeEach(uiBody)
+/**
+ * Coroutines View click event create
+ * @param bgBody background job.
+ * @param contextProvider CoroutineContextProvider
+ * @param job optional
+ */
+fun <R> viewClick(view: View, bgBody: suspend (item: View) -> R,
+                  contextProvider: CoroutineContextSealed = CoroutineContextProvider,
+                  job: Job? = null): CoroutinesUIEventDefault<View, R> =
+        CoroutinesOnClick(view, bgBody, contextProvider, job)
