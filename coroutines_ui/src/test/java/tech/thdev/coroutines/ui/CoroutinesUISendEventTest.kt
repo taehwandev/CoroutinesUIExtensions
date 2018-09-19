@@ -10,7 +10,7 @@ class CoroutinesUISendEventTest {
     @Test
     fun throttleFirst() = runBlocking {
         var count = 0
-        val onClick = CoroutinesUISendEvent<Int, Int>(
+        val onClick = CoroutinesSendChannelUIEvent<Int, Int>(
                 bgBody = {
                     it
                 },

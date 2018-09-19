@@ -12,20 +12,20 @@ import tech.thdev.coroutines.operator.time.CoroutinesThrottleFirst
 import tech.thdev.coroutines.provider.CoroutineContextSealed
 import kotlin.coroutines.experimental.EmptyCoroutineContext
 
-abstract class CoroutinesUIEventDefault<E, R>(private val bgBody: suspend (item: E) -> R,
-                                              private val contextProvider: CoroutineContextSealed,
-                                              private val job: Job? = null) {
+abstract class BaseCoroutinesSendChannelUIEvent<E, R>(private val bgBody: suspend (item: E) -> R,
+                                                      private val contextProvider: CoroutineContextSealed,
+                                                      private val job: Job? = null) {
 
     private var throttleFirst: CoroutinesThrottleFirst? = null
 
     private lateinit var clickActor: SendChannel<E>
 
-    open fun setThrottleFirst(time: Long, unit: TimeUnit): CoroutinesUIEventDefault<E, R> {
+    open fun setThrottleFirst(time: Long, unit: TimeUnit): BaseCoroutinesSendChannelUIEvent<E, R> {
         throttleFirst = CoroutinesThrottleFirst(time, unit)
         return this
     }
 
-    open fun consumeEach(uiBody: (item: R) -> Unit): CoroutinesUIEventDefault<E, R> {
+    open fun consumeEach(uiBody: (item: R) -> Unit): BaseCoroutinesSendChannelUIEvent<E, R> {
         clickActor = GlobalScope.actor(
                 context = contextProvider.main + (job ?: EmptyCoroutineContext)) {
             if (throttleFirst != null) {
