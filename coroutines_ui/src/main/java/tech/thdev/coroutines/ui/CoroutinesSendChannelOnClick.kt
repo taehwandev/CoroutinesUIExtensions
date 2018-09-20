@@ -31,9 +31,3 @@ fun <E : View, R> viewClick(view: E,
                             job: Job? = null,
                             bgBody: suspend (item: View) -> R): CoroutinesSendChannelOnClick<E, R> =
         CoroutinesSendChannelOnClick(view, bgBody, contextProvider, job)
-
-fun <E : View, R> CoroutinesSendChannelOnClick<E, R>.throttleFirst(time: Long, unit: TimeUnit = TimeUnit.MILLISECONDS): CoroutinesSendChannelOnClick<E, R> =
-        this.setThrottleFirst(time, unit) as CoroutinesSendChannelOnClick<E, R>
-
-infix fun <E : View, R> CoroutinesSendChannelOnClick<E, R>.update(uiBody: (item: R) -> Unit): CoroutinesSendChannelOnClick<E, R> =
-        this.consumeEach(uiBody) as CoroutinesSendChannelOnClick<E, R>

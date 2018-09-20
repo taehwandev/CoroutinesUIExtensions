@@ -1,5 +1,6 @@
 package tech.thdev.coroutines.ui
 
+import android.view.View
 import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.channels.SendChannel
@@ -43,3 +44,9 @@ abstract class BaseCoroutinesSendChannelUIEvent<E, R>(private val bgBody: suspen
         }
     }
 }
+
+fun <E : View, R> BaseCoroutinesSendChannelUIEvent<E, R>.throttleFirst(time: Long, unit: TimeUnit = TimeUnit.MILLISECONDS): BaseCoroutinesSendChannelUIEvent<E, R> =
+        this.setThrottleFirst(time, unit)
+
+infix fun <E : View, R> BaseCoroutinesSendChannelUIEvent<E, R>.update(uiBody: (item: R) -> Unit): BaseCoroutinesSendChannelUIEvent<E, R> =
+        this.consumeEach(uiBody)
