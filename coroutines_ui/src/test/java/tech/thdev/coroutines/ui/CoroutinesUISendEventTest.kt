@@ -27,4 +27,26 @@ class CoroutinesUISendEventTest {
             Thread.sleep(100)
         }
     }
+
+    @Test
+    fun throttleLast() = runBlocking {
+        var count = 0
+        val onClick = CoroutinesSendChannelUIEvent<Int, Int>(
+                bgBody = {
+                    println("bgBody $it")
+                    it
+                },
+                contextProvider = CoroutineContextProviderDefault)
+        onClick.throttleLast(500, TimeUnit.MILLISECONDS)
+        onClick.consumeEach {
+            println("getCount $it")
+        }
+
+        (1..5).forEach {  _ ->
+            onClick.offer(++count)
+            println("++count $count")
+            Thread.sleep(100)
+        }
+        Thread.sleep(5000)
+    }
 }

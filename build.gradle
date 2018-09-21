@@ -3,7 +3,7 @@
 buildscript {
     ext {
         kotlin_version = '1.2.70'
-        coroutines_version = '0.26.0'
+        coroutines_version = '0.26.1'
 
         // Bintray setting info
         repositoryName = 'thdev.tech'

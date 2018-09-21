@@ -9,7 +9,9 @@ import kotlinx.coroutines.experimental.channels.consumeEach
 import kotlinx.coroutines.experimental.channels.map
 import kotlinx.coroutines.experimental.timeunit.TimeUnit
 import tech.thdev.coroutines.operator.throttleFirst
+import tech.thdev.coroutines.operator.throttleLast
 import tech.thdev.coroutines.operator.time.CoroutinesThrottleFirst
+import tech.thdev.coroutines.operator.time.CoroutinesThrottleLast
 import tech.thdev.coroutines.provider.CoroutineContextSealed
 import kotlin.coroutines.experimental.EmptyCoroutineContext
 
@@ -18,6 +20,7 @@ abstract class BaseCoroutinesSendChannelUIEvent<E, R>(private val bgBody: suspen
                                                       private val job: Job? = null) {
 
     private var throttleFirst: CoroutinesThrottleFirst? = null
+    private var throttleLast: CoroutinesThrottleLast? = null
 
     private lateinit var clickActor: SendChannel<E>
 
@@ -26,11 +29,18 @@ abstract class BaseCoroutinesSendChannelUIEvent<E, R>(private val bgBody: suspen
         return this
     }
 
+    open fun setThrottleLast(time: Long, unit: TimeUnit): BaseCoroutinesSendChannelUIEvent<E, R> {
+        throttleLast = CoroutinesThrottleLast(time, unit)
+        return this
+    }
+
     open fun consumeEach(uiBody: (item: R) -> Unit): BaseCoroutinesSendChannelUIEvent<E, R> {
         clickActor = GlobalScope.actor(
                 context = contextProvider.main + (job ?: EmptyCoroutineContext)) {
             if (throttleFirst != null) {
                 this.channel.throttleFirst(context = contextProvider.default, throttleFirst = throttleFirst!!).map(context = contextProvider.default, transform = bgBody).consumeEach(uiBody)
+            } else if (throttleLast != null) {
+                this.channel.throttleLast(context = contextProvider.default, throttleLast = throttleLast!!).map(context = contextProvider.default, transform = bgBody).consumeEach(uiBody)
             } else {
                 this.channel.map(context = contextProvider.default, transform = bgBody).consumeEach(uiBody)
             }
@@ -45,8 +55,11 @@ abstract class BaseCoroutinesSendChannelUIEvent<E, R>(private val bgBody: suspen
     }
 }
 
-fun <E : View, R> BaseCoroutinesSendChannelUIEvent<E, R>.throttleFirst(time: Long, unit: TimeUnit = TimeUnit.MILLISECONDS): BaseCoroutinesSendChannelUIEvent<E, R> =
+fun <E, R> BaseCoroutinesSendChannelUIEvent<E, R>.throttleFirst(time: Long, unit: TimeUnit = TimeUnit.MILLISECONDS): BaseCoroutinesSendChannelUIEvent<E, R> =
         this.setThrottleFirst(time, unit)
 
-infix fun <E : View, R> BaseCoroutinesSendChannelUIEvent<E, R>.update(uiBody: (item: R) -> Unit): BaseCoroutinesSendChannelUIEvent<E, R> =
+fun <E, R> BaseCoroutinesSendChannelUIEvent<E, R>.throttleLast(time: Long, unit: TimeUnit = TimeUnit.MILLISECONDS): BaseCoroutinesSendChannelUIEvent<E, R> =
+        this.setThrottleLast(time, unit)
+
+infix fun <E, R> BaseCoroutinesSendChannelUIEvent<E, R>.update(uiBody: (item: R) -> Unit): BaseCoroutinesSendChannelUIEvent<E, R> =
         this.consumeEach(uiBody)
