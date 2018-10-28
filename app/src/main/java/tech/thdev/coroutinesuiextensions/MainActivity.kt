@@ -7,13 +7,12 @@ import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.coroutines.experimental.GlobalScope
+import kotlinx.coroutines.experimental.Dispatchers
 import kotlinx.coroutines.experimental.channels.actor
 import kotlinx.coroutines.experimental.delay
-import tech.thdev.coroutines.base.ui.CoroutineScopeAppCompatActivity
-import tech.thdev.coroutines.provider.DispatchersProvider
+import tech.thdev.support.base.coroutines.ui.CoroutineScopeActivity
 
-class MainActivity : CoroutineScopeAppCompatActivity() {
+class MainActivity : CoroutineScopeActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,20 +20,23 @@ class MainActivity : CoroutineScopeAppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        var count = 0
+        var currentIndex = 0
         fab.onClick {
-            count++
-            for (i in 10 downTo 1) { // countdown from 10 to 1
-                tv_message.text = "Now Click $count Countdown $i ..." // update text
-                delay(500) // wait half a second
-            }
-            tv_message.text = "Done!"
+            10.countDown(currentIndex++)
         }
+    }
+
+    private suspend fun Int.countDown(currentIndex: Int) {
+        for (index in this downTo 1) { // countdown from 10 to 1
+            tv_message.text = "Now index $currentIndex Countdown $index" // update text
+            delay(200)
+        }
+        tv_message.text = "Done!"
     }
 
     private fun View.onClick(action: suspend (View) -> Unit) {
         // launch one actor
-        val event = GlobalScope.actor<View>(DispatchersProvider.main) {
+        val event = actor<View>(Dispatchers.Main) {
             for (event in channel) action(event)
         }
 
@@ -57,11 +59,5 @@ class MainActivity : CoroutineScopeAppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        job.cancel()
     }
 }

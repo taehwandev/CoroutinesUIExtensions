@@ -11,6 +11,7 @@ sealed class DispatchersProviderSealed {
 object DispatchersProvider : DispatchersProviderSealed()
 
 /**
+ * Unit Test를 위한 Dispatchers 정의
  * Default context provider.
  * Unconfined default.
  */
