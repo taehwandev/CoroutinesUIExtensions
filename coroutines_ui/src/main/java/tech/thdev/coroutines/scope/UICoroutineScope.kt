@@ -1,5 +1,6 @@
 package tech.thdev.coroutines.scope
 
+import android.util.Log
 import kotlinx.coroutines.experimental.Job
 import tech.thdev.coroutines.provider.DispatchersProvider
 import kotlin.coroutines.experimental.CoroutineContext
@@ -12,7 +13,7 @@ class UICoroutineScope : BaseCoroutineScope {
         get() = DispatchersProvider.main + job
 
     override fun release() {
-        android.util.Log.e("TEMP", "base release!!!!!!!! cancel")
+        Log.d("UICoroutineScope", "base release!!!!!!!! cancel")
         job.cancel()
     }
 }
