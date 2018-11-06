@@ -1,17 +1,20 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlinx-atomicfu'
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
-        applicationId "tech.thdev.coroutinesuiextensions"
-        minSdkVersion 21
+        minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,15 +24,11 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-
-    implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation "com.google.android.material:material:$materialLibraryVersion"
-
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    compileOnly "org.jetbrains.kotlinx:atomicfu:$atomicFU_version"
 
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
     // Because RxAndroid releases are few and far between, it is recommended you also
@@ -37,13 +36,9 @@ dependencies {
     // (see https://github.com/ReactiveX/RxJava/releases for latest 2.x.x version)
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
 
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation project(':coroutines_ui')
-    implementation project(':kotlinx_coroutines_rx2')
 }

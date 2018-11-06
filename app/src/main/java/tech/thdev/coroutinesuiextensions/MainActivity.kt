@@ -4,15 +4,20 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.coroutines.experimental.Dispatchers
-import kotlinx.coroutines.experimental.channels.actor
-import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.rx2.await
+import tech.thdev.coroutines.ui.onClick
+import tech.thdev.coroutines.ui.runUi
+import tech.thdev.coroutinesuiextensions.network.RetrofitFactory
 import tech.thdev.support.base.coroutines.ui.CoroutineScopeActivity
 
 class MainActivity : CoroutineScopeActivity() {
+
+    private val gitHubService by lazy {
+        RetrofitFactory.githubApi
+    }
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,28 +25,12 @@ class MainActivity : CoroutineScopeActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        var currentIndex = 0
         fab.onClick {
-            10.countDown(currentIndex++)
-        }
-    }
-
-    private suspend fun Int.countDown(currentIndex: Int) {
-        for (index in this downTo 1) { // countdown from 10 to 1
-            tv_message.text = "Now index $currentIndex Countdown $index" // update text
-            delay(200)
-        }
-        tv_message.text = "Done!"
-    }
-
-    private fun View.onClick(action: suspend (View) -> Unit) {
-        // launch one actor
-        val event = actor<View>(Dispatchers.Main) {
-            for (event in channel) action(event)
-        }
-
-        setOnClickListener {
-            event.offer(it)
+            gitHubService.contributors(tv_owner.text.toString(), tv_repo.text.toString()).await().take(10)
+        }.runUi {
+            for ((name, contributions) in it) {
+                tv_message.text = "$name as $contributions contributions!"
+            }
         }
     }
 

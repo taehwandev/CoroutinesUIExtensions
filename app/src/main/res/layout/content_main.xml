@@ -8,6 +8,24 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <EditText
+        android:id="@+id/tv_owner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="taehwandev"
+        app:layout_constraintEnd_toStartOf="@+id/tv_repo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/tv_repo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="CoroutineUIExtensions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_owner"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_message"
         android:layout_width="wrap_content"

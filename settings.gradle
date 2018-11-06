@@ -1,1 +1,1 @@
-include ':app', ':coroutines_ui'
+include ':app', ':coroutines_ui', ':kotlinx_coroutines_rx2'

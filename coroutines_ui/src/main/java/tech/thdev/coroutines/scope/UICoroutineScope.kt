@@ -1,9 +1,10 @@
 package tech.thdev.coroutines.scope
 
 import android.util.Log
-import kotlinx.coroutines.experimental.Job
+import kotlinx.coroutines.Job
+import tech.thdev.coroutines.BuildConfig.DEBUG
 import tech.thdev.coroutines.provider.DispatchersProvider
-import kotlin.coroutines.experimental.CoroutineContext
+import kotlin.coroutines.CoroutineContext
 
 class UICoroutineScope : BaseCoroutineScope {
 
@@ -13,7 +14,9 @@ class UICoroutineScope : BaseCoroutineScope {
         get() = DispatchersProvider.main + job
 
     override fun release() {
-        Log.d("UICoroutineScope", "base release!!!!!!!! cancel")
+        if (DEBUG) {
+            Log.d("UICoroutineScope", "onRelease coroutine")
+        }
         job.cancel()
     }
 }
