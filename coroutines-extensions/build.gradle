@@ -5,8 +5,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'maven-publish'
 
 ext {
-    libraryVersionCode = 1
-    libraryVersion = '1.0.0'
+    libraryVersionCode = 2
+    libraryVersion = '2.0.0'
     libraryDescription = 'Android Kotlin Coroutines UI Controller. by thdev.tech'
     releaseNote = 'CHANGELOG_COROUTINES_UI_EXTENSIONS.md'
 }
@@ -45,3 +45,5 @@ dependencies {
     // mockito
     testImplementation "org.mockito:mockito-core:$mockitoCoreLibraryVersion"
 }
+
+apply from: rootProject.file('gradle/publish.gradle')

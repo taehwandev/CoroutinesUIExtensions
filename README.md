@@ -9,6 +9,8 @@ available for kotlin.
 
 ### AndroidX package
 
+[ ![Download](https://api.bintray.com/packages/taehwandev/thdev.tech/coroutines-extensions/images/download.svg) ](https://bintray.com/taehwandev/thdev.tech/coroutines-extensions/_latestVersion)
+
 ```
 ext.kotlin_version = '1.3.0'
 implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -21,7 +23,7 @@ implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
 ext.lifecycleVersion = '1.1.1'
 implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
 
-implementation 'tech.thdev.coroutines:coroutines-extensions:2.0.0'
+implementation 'tech.thdev.coroutines:coroutines-extensions:$last_version'
 ```
 
 ### Legacy package
