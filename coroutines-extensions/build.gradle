@@ -46,3 +46,5 @@ dependencies {
     // mockito
     testImplementation "org.mockito:mockito-core:$mockitoCoreLibraryVersion"
 }
+
+apply from: rootProject.file('gradle/publish.gradle')
