@@ -21,7 +21,7 @@
         android:id="@+id/tv_repo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="CoroutineUIExtensions"
+        android:text="CoroutinesUIExtensions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_owner"
         app:layout_constraintTop_toTopOf="parent" />

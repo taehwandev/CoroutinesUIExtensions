@@ -6,10 +6,10 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.rx2.await
 import tech.thdev.coroutines.ui.onClick
 import tech.thdev.coroutines.ui.runUi
+import tech.thdev.coroutinesuiextensions.data.Contributor
 import tech.thdev.coroutinesuiextensions.network.RetrofitFactory
 import tech.thdev.support.base.coroutines.ui.CoroutineScopeActivity
 
@@ -26,7 +26,14 @@ class MainActivity : CoroutineScopeActivity() {
         setSupportActionBar(toolbar)
 
         fab.onClick {
-            gitHubService.contributors(tv_owner.text.toString(), tv_repo.text.toString()).await().take(10)
+            gitHubService.contributors(tv_owner.text.toString(), tv_repo.text.toString())
+                    .onErrorReturn {
+                        mutableListOf(Contributor("", 0))
+                    }
+                    .doOnError {
+                        tv_message.text = "Search error ${it.message}"
+                    }
+                    .await()
         }.runUi {
             for ((name, contributions) in it) {
                 tv_message.text = "$name as $contributions contributions!"
