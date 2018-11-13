@@ -45,6 +45,5 @@ fun <E> View.onClick(dispatcherProvider: DispatchersProviderSealed = Dispatchers
  * @param uiBody run ui thread body
  */
 @ObsoleteCoroutinesApi
-infix fun <E> CoroutineOnClickEvent<E>.runUi(uiBody: (item: E) -> Unit) {
-    this.initUiSender(uiBody)
-}
+infix fun <E> CoroutineOnClickEvent<E>.runUi(uiBody: (item: E) -> Unit): CoroutineUIEvent<View, E> =
+        this.initUiSender(uiBody)

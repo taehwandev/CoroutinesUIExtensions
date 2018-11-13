@@ -1,6 +1,6 @@
 package tech.thdev.coroutines
 
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.*
 import org.junit.Test
 import tech.thdev.coroutines.provider.TestDispatchersProvider
 

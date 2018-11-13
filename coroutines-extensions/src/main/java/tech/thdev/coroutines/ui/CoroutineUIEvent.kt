@@ -56,6 +56,5 @@ fun <E, R> createUiEvent(dispatcherProvider: DispatchersProviderSealed = Dispatc
  * @param uiBody run ui thread body
  */
 @ObsoleteCoroutinesApi
-infix fun <E, R> CoroutineUIEvent<E, R>.runUi(uiBody: (item: R) -> Unit) {
-    this.initUiSender(uiBody)
-}
+infix fun <E, R> CoroutineUIEvent<E, R>.runUi(uiBody: (item: R) -> Unit): CoroutineUIEvent<E, R> =
+        this.initUiSender(uiBody)
