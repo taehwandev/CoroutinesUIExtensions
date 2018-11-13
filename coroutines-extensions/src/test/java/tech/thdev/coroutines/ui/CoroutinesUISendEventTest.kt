@@ -1,11 +1,5 @@
 package tech.thdev.coroutines.ui
 
-import kotlinx.coroutines.experimental.runBlocking
-import org.junit.Test
-import tech.thdev.coroutines.provider.TestDispatchersProvider
-import java.util.concurrent.TimeUnit
-import kotlin.coroutines.experimental.buildSequence
-
 class CoroutinesUISendEventTest {
 
 //    @Test
