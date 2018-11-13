@@ -1,11 +1,12 @@
 package tech.thdev.support.base.coroutines.viewmodel
 
 import androidx.lifecycle.ViewModel
+import tech.thdev.coroutines.provider.DispatchersProvider
 import tech.thdev.coroutines.scope.BaseCoroutineScope
 import tech.thdev.coroutines.scope.UICoroutineScope
 
 /**
- * Default CoroutineScope main thread.
+ * Default CoroutineScope default dispatchers.
  *
  * To change main thread example.
  *
@@ -16,7 +17,7 @@ import tech.thdev.coroutines.scope.UICoroutineScope
  * @property coroutineContext CoroutineContext : default main thread
  */
 abstract class CoroutineScopeViewModel @JvmOverloads constructor(
-        scope: BaseCoroutineScope = UICoroutineScope()) : ViewModel(), BaseCoroutineScope by scope {
+        scope: BaseCoroutineScope = UICoroutineScope(DispatchersProvider.default)) : ViewModel(), BaseCoroutineScope by scope {
 
     override fun onCleared() {
         super.onCleared()
