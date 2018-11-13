@@ -12,16 +12,17 @@ available for kotlin.
 [ ![Download](https://api.bintray.com/packages/taehwandev/thdev.tech/coroutines-extensions/images/download.svg) ](https://bintray.com/taehwandev/thdev.tech/coroutines-extensions/_latestVersion)
 
 ```
+// use kotlin and coroutine
 ext.kotlin_version = '1.3.0'
 implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 ext.coroutines_version = '1.0.0'
 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
-ext.supportLibraryVersion = '27.1.1'
-implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+ext.supportLibraryVersion = '1.0.1'
+implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
 
-ext.lifecycleVersion = '1.1.1'
-implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
+ext.lifecycleVersion = '2.0.0'
+implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
 
 implementation 'tech.thdev.coroutines:coroutines-extensions:$last_version'
 ```
