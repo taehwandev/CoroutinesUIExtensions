@@ -1,3 +1,6 @@
+### Version 1.1.1 (2018-11-13)
+- Fix to return after runUi
+
 ### Version 1.1.0 (2018-11-13)
 - Change ViewModel default thread.
     - main to default

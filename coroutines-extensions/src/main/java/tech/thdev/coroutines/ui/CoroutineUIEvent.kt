@@ -56,6 +56,5 @@ fun <E, R> BaseCoroutineScope.createUiEvent(
  * @param uiBody run ui thread body
  */
 @ObsoleteCoroutinesApi
-infix fun <E, R> CoroutineUIEvent<E, R>.runUi(uiBody: (item: R) -> Unit) {
-    this.initUiSender(uiBody)
-}
+infix fun <E, R> CoroutineUIEvent<E, R>.runUi(uiBody: (item: R) -> Unit): CoroutineUIEvent<E, R> =
+        this.initUiSender(uiBody)
