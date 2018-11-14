@@ -12,9 +12,9 @@ available for kotlin.
 [ ![Download](https://api.bintray.com/packages/taehwandev/thdev.tech/coroutines-extensions/images/download.svg) ](https://bintray.com/taehwandev/thdev.tech/coroutines-extensions/_latestVersion)
 
 ```
-ext.kotlin_version = '1.3.0'
+ext.kotlin_version = '1.3.10'
 implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-ext.coroutines_version = '1.0.0'
+ext.coroutines_version = '1.0.1'
 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
 ext.supportLibraryVersion = '27.1.1'
@@ -31,9 +31,9 @@ implementation 'tech.thdev.coroutines:coroutines-extensions:$last_version'
 [ ![Download](https://api.bintray.com/packages/taehwandev/thdev.tech/coroutines-extensions-legacy/images/download.svg) ](https://bintray.com/taehwandev/thdev.tech/coroutines-extensions-legacy/_latestVersion)
 
 ```
-ext.kotlin_version = '1.3.0'
+ext.kotlin_version = '1.3.10'
 implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-ext.coroutines_version = '1.0.0'
+ext.coroutines_version = '1.0.1'
 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
 ext.supportLibraryVersion = '27.1.1'
