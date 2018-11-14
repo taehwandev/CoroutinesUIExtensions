@@ -5,8 +5,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'maven-publish'
 
 ext {
-    libraryVersionCode = 4
-    libraryVersion = '2.1.1'
+    libraryVersionCode = 5
+    libraryVersion = '2.1.2'
     libraryDescription = 'Android Kotlin Coroutines UI Controller. by thdev.tech'
     releaseNote = 'CHANGELOG_COROUTINES_UI_EXTENSIONS.md'
 }
