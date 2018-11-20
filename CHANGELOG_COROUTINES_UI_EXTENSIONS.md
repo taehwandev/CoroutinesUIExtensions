@@ -1,3 +1,6 @@
+### Version 2.1.3 (2018-11-20)
+- Modifying UICoroutineScope class overrides
+
 ### Version 2.1.2 (2018-11-14)
 - Update kotlin 1.3.10/coroutines 1.0.1
 
