@@ -1,3 +1,6 @@
+### Version 1.1.4 (2018-11-20)
+- Function name change. release to releaseCoroutine
+
 ### Version 1.1.3 (2018-11-20)
 - Modifying UICoroutineScope class overrides
 

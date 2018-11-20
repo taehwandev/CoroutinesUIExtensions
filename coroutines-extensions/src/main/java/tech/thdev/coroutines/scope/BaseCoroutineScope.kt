@@ -2,12 +2,13 @@ package tech.thdev.coroutines.scope
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
-import tech.thdev.support.delegate.BaseDelegate
 
 /**
  * Only base coroutine scope.
  */
-interface BaseCoroutineScope : BaseDelegate, CoroutineScope {
+interface BaseCoroutineScope : CoroutineScope {
 
     val job: Job
+
+    fun releaseCoroutine()
 }

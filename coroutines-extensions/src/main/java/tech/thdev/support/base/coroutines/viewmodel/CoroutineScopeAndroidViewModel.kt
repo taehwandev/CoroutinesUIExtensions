@@ -24,6 +24,6 @@ abstract class CoroutineScopeAndroidViewModel @JvmOverloads constructor(
     override fun onCleared() {
         super.onCleared()
 
-        release()
+        releaseCoroutine()
     }
 }

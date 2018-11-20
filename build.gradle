@@ -18,16 +18,7 @@ buildscript {
 
         mockitoCoreLibraryVersion = '2.22.0'
 
-        // Bintray setting info
         repositoryName = 'thdev.tech'
-        groupId = 'tech.thdev.coroutines'
-
-        websiteUrl = 'https://github.com/taehwandev/CoroutinesUIExtensions'
-        gitHubRepoUrl = 'https://github.com/taehwandev/CoroutinesUIExtensions.git'
-
-        LABELS = ['aar', 'android', 'android coroutines UI extensions legacy']
-        GITHUB_REPO = 'taehwandev/CoroutinesUIExtensions'
-        NODE_NAME = 'CoroutinesUIExtensionsLegacy'
 
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())

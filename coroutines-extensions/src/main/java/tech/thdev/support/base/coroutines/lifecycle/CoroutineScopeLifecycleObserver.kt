@@ -20,7 +20,7 @@ abstract class CoroutineScopeLifecycleObserver @JvmOverloads constructor(
         scope: BaseCoroutineScope = UICoroutineScope()) : LifecycleObserver, BaseCoroutineScope by scope {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy() {
-        release()
+    open fun onDestroy() {
+        releaseCoroutine()
     }
 }
