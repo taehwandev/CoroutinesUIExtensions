@@ -5,14 +5,10 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'maven-publish'
 
 ext {
-    libraryVersionCode = 6
-    libraryVersion = '2.1.4'
     libraryDescription = 'Android Kotlin Coroutines UI Controller. by thdev.tech'
     releaseNote = 'CHANGELOG_COROUTINES_UI_EXTENSIONS.md'
 
     // Bintray setting info
-    groupId = 'tech.thdev.coroutines'
-
     websiteUrl = 'https://github.com/taehwandev/CoroutinesUIExtensions'
     gitHubRepoUrl = 'https://github.com/taehwandev/CoroutinesUIExtensions.git'
 
