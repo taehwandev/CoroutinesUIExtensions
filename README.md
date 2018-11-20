@@ -25,6 +25,9 @@ ext.lifecycleVersion = '2.0.0'
 implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
 
 implementation 'tech.thdev.coroutines:coroutines-extensions:$last_version'
+
+// And RX Java 2
+implementation 'tech.thdev.coroutines.rx2:rx2-coroutines-extensions-legacy:$last_version'
 ```
 
 ### Legacy package
