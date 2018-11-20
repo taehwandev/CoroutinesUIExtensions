@@ -20,6 +20,6 @@ abstract class CoroutineScopeActivity @JvmOverloads constructor(scope: BaseCorou
     override fun onDestroy() {
         super.onDestroy()
 
-        release()
+        releaseCoroutine()
     }
 }

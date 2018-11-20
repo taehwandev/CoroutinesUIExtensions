@@ -6,14 +6,14 @@ import tech.thdev.coroutines.BuildConfig.DEBUG
 import tech.thdev.coroutines.provider.DispatchersProvider
 import kotlin.coroutines.CoroutineContext
 
-open class UICoroutineScope(private val dispatchers: CoroutineContext = DispatchersProvider.main) : BaseCoroutineScope {
+class UICoroutineScope(private val dispatchers: CoroutineContext = DispatchersProvider.main) : BaseCoroutineScope {
 
     override val job: Job = Job()
 
     override val coroutineContext: CoroutineContext
         get() = dispatchers + job
 
-    override fun release() {
+    override fun releaseCoroutine() {
         if (DEBUG) {
             Log.d("UICoroutineScope", "onRelease coroutine")
         }

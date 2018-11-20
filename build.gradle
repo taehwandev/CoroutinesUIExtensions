@@ -21,14 +21,6 @@ buildscript {
 
         // Bintray setting info
         repositoryName = 'thdev.tech'
-        groupId = 'tech.thdev.coroutines'
-
-        websiteUrl = 'https://github.com/taehwandev/CoroutinesUIExtensions'
-        gitHubRepoUrl = 'https://github.com/taehwandev/CoroutinesUIExtensions.git'
-
-        LABELS = ['aar', 'android', 'android coroutines UI extensions']
-        GITHUB_REPO = 'taehwandev/CoroutinesUIExtensions'
-        NODE_NAME = 'CoroutinesUIExtensions'
 
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
