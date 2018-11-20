@@ -8,7 +8,7 @@ ext {
     libraryVersionCode = 6
     libraryVersion = '1.1.4'
     libraryDescription = 'Android Kotlin Coroutines UI Controller. by thdev.tech'
-    releaseNote = 'coroutines-extensions/CHANGELOG_COROUTINES_UI_EXTENSIONS.md'
+    releaseNote = 'CHANGELOG_COROUTINES_UI_EXTENSIONS.md'
 
     // Bintray setting info
     groupId = 'tech.thdev.coroutines'
