@@ -1,3 +1,6 @@
+### Version 2.2.0 (2018-11-20)
+- Coroutine extension version and rx2 same version.
+
 ### Version 2.1.4 (2018-11-20)
 - Function name change. release to releaseCoroutine
 
