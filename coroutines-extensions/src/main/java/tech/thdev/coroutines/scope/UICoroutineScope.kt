@@ -6,7 +6,7 @@ import tech.thdev.coroutines.BuildConfig.DEBUG
 import tech.thdev.coroutines.provider.DispatchersProvider
 import kotlin.coroutines.CoroutineContext
 
-class UICoroutineScope(private val dispatchers: CoroutineContext = DispatchersProvider.main) : BaseCoroutineScope {
+open class UICoroutineScope(private val dispatchers: CoroutineContext = DispatchersProvider.main) : BaseCoroutineScope {
 
     override val job: Job = Job()
 
