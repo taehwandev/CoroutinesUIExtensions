@@ -19,8 +19,8 @@ buildscript {
         mockitoCoreLibraryVersion = '2.22.0'
 
         // Bintray setting info
-        libraryVersionCode = 7
-        libraryVersion = '1.3.0'
+        libraryVersionCode = 8
+        libraryVersion = '1.3.1'
 
         repositoryName = 'thdev.tech'
         groupId = 'tech.thdev.coroutines'

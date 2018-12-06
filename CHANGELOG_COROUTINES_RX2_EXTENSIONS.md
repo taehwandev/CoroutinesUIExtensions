@@ -1,3 +1,6 @@
+### Version 1.3.1 (2018-12-06)
+- Fix. Dialog class adding abstract
+
 ### Version 1.3.0 (2018-12-06)
 - Add DialogFragment release
 
