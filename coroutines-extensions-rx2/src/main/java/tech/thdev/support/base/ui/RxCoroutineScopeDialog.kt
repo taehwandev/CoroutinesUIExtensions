@@ -5,7 +5,7 @@ import tech.thdev.rx.scope.BaseRxScope
 import tech.thdev.rx.scope.RxScope
 import tech.thdev.support.base.coroutines.ui.CoroutineScopeDialog
 
-class RxCoroutineScopeDialog @SuppressLint("ValidFragment") @JvmOverloads constructor(
+abstract class RxCoroutineScopeDialog @SuppressLint("ValidFragment") @JvmOverloads constructor(
         scope: BaseRxScope = RxScope()) : CoroutineScopeDialog(), BaseRxScope by scope {
 
     override fun onDestroyView() {
