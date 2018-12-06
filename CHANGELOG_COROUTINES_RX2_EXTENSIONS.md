@@ -1,3 +1,6 @@
+### Version 1.3.0 (2018-12-06)
+- Add DialogFragment release
+
 ### Version 1.2.0 (2018-11-20)
 - Coroutine extension version and rx2 same version.
 
