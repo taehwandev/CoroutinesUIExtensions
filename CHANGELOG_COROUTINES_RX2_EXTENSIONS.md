@@ -1,3 +1,6 @@
+### Version 1.4.0 (2019-03-10)
+- Kotlin/Coroutines version update
+
 ### Version 1.3.1 (2018-12-06)
 - Fix. Dialog class adding abstract
 
