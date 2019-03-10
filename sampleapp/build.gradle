@@ -47,4 +47,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':coroutines-extensions')
     implementation project(':kotlinx_coroutines_rx2')
+    implementation project(':coroutines-extensions-rx2')
 }
