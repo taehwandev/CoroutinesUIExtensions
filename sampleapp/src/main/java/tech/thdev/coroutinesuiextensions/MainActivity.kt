@@ -4,14 +4,23 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.coroutines.*
 import kotlinx.coroutines.rx2.await
 import tech.thdev.coroutines.ui.onClick
 import tech.thdev.coroutines.ui.runUi
 import tech.thdev.coroutinesuiextensions.data.Contributor
 import tech.thdev.coroutinesuiextensions.network.RetrofitFactory
 import tech.thdev.support.base.coroutines.ui.CoroutineScopeActivity
+
+class TestViewModel : ViewModel() {
+    init {
+        viewModelScope.launch {  }
+    }
+}
 
 class MainActivity : CoroutineScopeActivity() {
 
@@ -38,6 +47,21 @@ class MainActivity : CoroutineScopeActivity() {
             for ((name, contributions) in it) {
                 tv_message.text = "$name as $contributions contributions!"
             }
+        }
+
+        runBlocking {  }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val jobOne = launch {
+                android.util.Log.e("TEMP", "current ${Thread.currentThread()}")
+            }
+
+            val jobTwo = launch(Dispatchers.Main) {
+                android.util.Log.e("TEMP", "current ${Thread.currentThread()}")
+            }
+
+            jobOne.join()
+            jobTwo.join()
         }
     }
 

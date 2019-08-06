@@ -1,1 +1,1 @@
-include ':sampleapp', ':coroutines-extensions', ':kotlinx_coroutines_rx2', ':coroutines-extensions-rx2'
+include ':sampleapp', ':coroutines-extensions'
